@@ -2,11 +2,15 @@ using CulinaryNotes.AppConfiguration.ServicesExtensions;
 using CulinaryNotes.AppConfiguration.ApplicationExtensions;
 using Serilog;
 
+var configuration = new ConfigurationBuilder()
+.AddJsonFile("appsettings.json", optional: false)
+.Build();
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.AddSerilogConfiguration();
+builder.Services.AddDbContextConfiguration(configuration);
 builder.Services.AddVersioningConfiguration();
 builder.Services.AddControllers();
 builder.Services.AddSwaggerConfiguration();
@@ -15,6 +19,7 @@ builder.Services.AddSwaggerConfiguration();
 
 
 var app = builder.Build();
+
 app.UseSerilogConfiguration();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -23,9 +28,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();

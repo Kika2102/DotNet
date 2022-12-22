@@ -20,6 +20,9 @@
     <PackageReference Include="Serilog.Expressions" Version="3.4.1" />
     <PackageReference Include="Serilog.Enrichers.CorrelationId" Version="3.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.10" />
-    
+  </ItemGroup>
+
+    <ItemGroup>
+     <ProjectReference Include="..\CulinaryNotes.Entity\CulinaryNotes.Entity.csproj"/>
   </ItemGroup>
 </Project>
